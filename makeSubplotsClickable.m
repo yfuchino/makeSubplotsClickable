@@ -6,14 +6,14 @@
 % Description:
 % This script enables click-to-enlarge functionality for all subplots 
 % in the current figure. It supports various plot types, including 
-% plot(), imagesc(), and Patch().
+% plot(), imagesc(), and patch().
 %
 % Features:
 % - Click on a subplot to open an enlarged version in a new figure.
-% - Supports plot(), imagesc(), Patch(), and more.
+% - Supports plot(), imagesc(), patch(), and more.
 % - Retains original axis settings (XLim, YLim, XDir, YDir).
 % - Preserves original colormap and colorbar.
-% - Only makes the axis transparent for drawPatch34rwb subplots.
+% - Only makes the axis transparent for patch subplots.
 %
 % Usage:
 % - Run this script after creating subplots to enable click-to-enlarge.
@@ -29,7 +29,7 @@ function makeSubplotsClickable()
     for i = 1:length(axs)
         ax = axs(i);
         
-        % Make the axis transparent only for Patch subplots
+        % Make the axis transparent only for patch subplots
         patches = findall(ax, 'Type', 'Patch');
         if ~isempty(patches)
             set(ax, 'XColor', 'none', 'YColor', 'none', 'Box', 'off', 'Color', 'none');
@@ -74,7 +74,7 @@ function enlarge_subplot(ax)
              'LineWidth', lines(i).LineWidth, 'Marker', lines(i).Marker);
     end
 
-    % Copy all patches (for Patch, etc.)
+    % Copy all patches (for patch, etc.)
     patches = findall(ax, 'Type', 'Patch');
     for i = 1:length(patches)
         patch('XData', patches(i).XData, 'YData', patches(i).YData, ...
